@@ -85,15 +85,16 @@ router.get('/', function(req, res, next) {
     order: [['createdAt', 'DESC']],
     raw: true
   };
-  Sequelize.Promise.all([
-    models.Order.findAll(options),
-    models.Spreadsheet.findAll(options)
-  ]).then(function(results) {
-    res.render('index', {
-      orders: results[0],
-      spreadsheets: results[1]
-    });
-  });
+  res.render('index');
+  //Sequelize.Promise.all([
+  //  models.Order.findAll(options),
+  //  models.Spreadsheet.findAll(options)
+  //]).then(function(results) {
+  //  res.render('index', {
+  //    orders: results[0],
+  //    spreadsheets: results[1]
+  //  });
+  //});
 });
 
 
