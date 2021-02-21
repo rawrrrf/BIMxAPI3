@@ -25,20 +25,21 @@ var models = require('./models');
 var Sequelize = require('sequelize');
 
 // TODO: Show spreadsheets on the main page.
-// router.get('/', function(req, res, next) {
-//   var options = {
-//     order: [['createdAt', 'DESC']],
-//     raw: true
-//   };
-//   models.Order.findAll(options)
-//   .then(function(orders) {
-//     res.render('index', {
-//       orders: orders
-//     });
-//   }, function(err) {
-//     next(err);
-//   });
-// });
+router.get('/', function(req, res, next) {
+  var options = {
+    order: [['createdAt', 'DESC']],
+    raw: true
+  };
+  models.Order.findAll(options)
+  .then(function(orders) {
+    console.log('inside root');
+    res.render('index', {
+      orders: orders
+    });
+  }, function(err) {
+    next(err);
+  });
+});
 
 router.get('/create', function(req, res, next) {
   res.render('upsert');
@@ -85,16 +86,16 @@ router.get('/', function(req, res, next) {
     order: [['createdAt', 'DESC']],
     raw: true
   };
-  res.render('index');
-  // Sequelize.Promise.all([
-  //   models.Order.findAll(options),
-  //   models.Spreadsheet.findAll(options)
-  // ]).then(function(results) {
-  //   res.render('index', {
-  //     orders: results[0],
-  //     spreadsheets: results[1]
-  //   });
-  // });
+  res.sendFile(path.join(__dirname,'index.html'));
+  Sequelize.Promise.all([
+    models.Order.findAll(options),
+    models.Spreadsheet.findAll(options)
+  ]).then(function(results) {
+    res.render('index', {
+      orders: results[0],
+      spreadsheets: results[1]
+    });
+  });
 
 });
 
@@ -146,4 +147,6 @@ router.post('/spreadsheets/:id/sync', function(req, res, next) {
     });
   });
 });
+
+
 module.exports = router;
