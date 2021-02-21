@@ -9,6 +9,7 @@
   },
   "repository": "https://github.com/googlecodelabs/sheets-api",
   "scripts": {
+    "build": "netlify-lambda build .",
     "start": "nodemon server.js"
   },
   "dependencies": {
