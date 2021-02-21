@@ -96,7 +96,11 @@ app.use(express.static(path.join(__dirname, '../public'))); //new addition
 app.use('/.netlify/functions/server', routes);
 app.use('/', routes);
 
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+app.use('/', (req, res) => {
+    console.log('inside app use root');
+    res.sendFile(path.join(__dirname, '../index.html'));
+}
+);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
