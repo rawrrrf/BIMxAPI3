@@ -9,18 +9,23 @@
   },
   "repository": "https://github.com/googlecodelabs/sheets-api",
   "scripts": {
-    "build": "netlify-lambda build .",
-    "start": "nodemon server.js"
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.848.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "google-auth-library": "^4.2.6",
     "googleapis": "^40.0.1",
     "morgan": "^1.9.1",
-    "sequelize": "^5.21.2",
-    "sqlite3": "^4.1.1"
+    "netlify-lambda": "^2.0.3",
+    "node-pre-gyp": "^0.17.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.22.3",
+    "serverless-http": "^2.7.0",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.9.1"
