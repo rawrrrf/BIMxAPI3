@@ -25,6 +25,7 @@ var models = require('./models');
 var Sequelize = require('sequelize');
 
 router.get('/', function(req, res, next) {
+  console.log('inside root');
   var options = {
     order: [['createdAt', 'DESC']],
     raw: true
